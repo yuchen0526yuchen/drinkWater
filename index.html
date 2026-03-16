@@ -35,6 +35,19 @@
             </div>
         </section>
 
+        <section class="progress-section">
+            <h3>當前颶光儲備 (今日飲水)</h3>
+            <div class="stormlight-bar-container">
+                <div id="progressBar" class="stormlight-bar-fill"></div>
+                <span id="progressText">0 / 2000 ml</span>
+            </div>
+            <div class="water-controls">
+                <button onclick="addWater(250)">+ 250ml (小寶石)</button>
+                <button onclick="addWater(500)">+ 500ml (大寶石)</button>
+                <button onclick="resetWater()" class="reset-btn">清空儲備</button>
+            </div>
+        </section>
+
         <p id="statusText">等待風父的敕令...</p>
     </div>
     <script src="script.js"></script>
