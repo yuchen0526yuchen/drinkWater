@@ -277,3 +277,97 @@ button:active {
     color: #050a12;
     box-shadow: 0 0 25px var(--honor-blue);
 }
+
+/* 紀錄區塊 (碎岩刃風格) */
+.progress-section {
+    margin-top: 35px;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.shard-metal-border {
+    border: 2px solid var(--rock-dark);
+    border-top: 3px solid var(--shard-metal);
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.6);
+}
+
+.shard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: 'Cinzel', serif;
+}
+
+.shard-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #8899aa;
+    text-transform: uppercase;
+}
+
+#progressText {
+    font-size: 1rem;
+    color: var(--stormlight-white);
+    text-shadow: 0 0 5px var(--honor-blue);
+}
+
+.stormlight-bar-container {
+    width: 100%;
+    height: 18px;
+    background: #05111d;
+    border: 1px solid #1a222a;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.stormlight-bar-fill {
+    height: 100%;
+    width: 0%; 
+    background: linear-gradient(90deg, #004499, var(--honor-blue), #ffffff);
+    box-shadow: 0 0 15px var(--honor-blue);
+    transition: width 0.7s cubic-bezier(0.1, 0.7, 0.1, 1); /* 柔和的流動感 */
+}
+
+/* 紀錄按鈕區域：按鈕縮小與解決擁擠 */
+.water-controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap; /* 重要：自動換行 */
+}
+
+.gem-btn {
+    font-size: 0.8rem;
+    padding: 8px 15px;
+    border-radius: 2px;
+}
+
+.gem-btn:hover {
+    box-shadow: 0 0 15px white;
+    color: white;
+}
+
+/* 不同寶石按鈕的懸停顏色 */
+.small-gem:hover { background-color: #33bbff; }
+.large-gem:hover { background-color: #11ee88; }
+.grand-gem:hover { background-color: #ffdd44; }
+
+.metal-btn {
+    background-color: #2a3a4a;
+    color: #8899aa;
+    border-color: #3a4a5a;
+}
+
+.metal-btn:hover {
+    background-color: #556677;
+    color: white;
+}
+
+#statusText {
+    color: #556677;
+    font-size: 0.8rem;
+    margin-top: 30px;
+    font-style: italic;
+}
