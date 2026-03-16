@@ -1,230 +1,279 @@
-/* 全局設定：使用 Cinzel 模擬古老字體，Noto Sans 處理繁體中文 */
+/* 全局設定 */
+:root {
+    --bg-dark: #050a12;
+    --rock-dark: #121820;
+    --shard-metal: #556677;
+    --honor-blue: #00bfff;
+    --lightweaver-garnet: #e6194b;
+    --stormlight-white: #f0faff;
+    --everstorm-purple: rgba(75, 0, 130, 0.4);
+    --everstorm-red: rgba(139, 0, 0, 0.3);
+}
+
 body {
     font-family: 'Cinzel', 'Noto Sans TC', serif;
-    background-color: #030a12; /* 深藍黑色，像夜空 */
-    background-image: 
-        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 10px),
-        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 5px),
-        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 10px);
-    background-size: 550px 550px, 350px 350px, 250px 250px;
-    background-position: 0 0, 40px 60px, 130px 270px; /* 模擬星空背景 */
-    color: #f0f0f0;
+    background-color: var(--bg-dark);
+    color: #e0e0e0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
     overflow-x: hidden;
-}
-
-/* 主容器：像是一個古老的石質祭壇 */
-.main-shrine {
-    background: linear-gradient(145deg, #112233, #08111a);
-    padding: 3rem;
-    border-radius: 10px;
-    box-shadow: 0 0 50px rgba(0, 191, 255, 0.2), inset 0 0 15px rgba(0,0,0,0.5);
-    text-align: center;
-    max-width: 500px;
-    width: 90%;
-    border: 2px solid #334455; /* 石材框線 */
     position: relative;
 }
 
+/* 動態無盡風暴背景 */
+.storm-background {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 30%, var(--everstorm-purple) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, var(--everstorm-red) 0%, transparent 40%),
+        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAtIiBoZWlnaHQ9IjQwMC0iIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj48ZyBmaWxsLX9wYWNpdHk9IjAuMDUiPjxjaXJjbGUgY3g9IjEwIiBjeT0iMTAiIHI9IjEiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjIiLz48Y2lyY2xlIGN4PSfMjAwIiBjeT0nMjAwIiByPSIxLjUiLz48Y2lyY2xlIGN4PSIzMDAiIGN5PSIzMDAiIHI9IjMiLz48L2c+PC9zdmc+'); /* 模擬粗糙岩石紋理 */
+    background-size: cover, cover, 300px 300px;
+    filter: blur(5px);
+    z-index: -1;
+    animation: stormDrift 20s infinite linear alternate;
+}
+
+@keyframes stormDrift {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 10% 10%; }
+}
+
+/* 主容器：烏契理岩石祭壇 */
+.main-shrine {
+    background-color: var(--rock-dark);
+    background-image: linear-gradient(145deg, rgba(0,0,0,0.5), rgba(255,255,255,0.02));
+    padding: 2.5rem;
+    border-radius: 5px; /* 岩石不需要太圓 */
+    box-shadow: 
+        0 15px 50px rgba(0, 0, 0, 0.7),
+        inset 0 0 20px rgba(0,191,255,0.05);
+    text-align: center;
+    max-width: 550px;
+    width: 90%;
+    border: 3px solid #1a222a; /* 粗糙岩石框線 */
+    position: relative;
+}
+
+/* 浮雕文字效果 */
 header h1 {
-    font-size: 2.5rem;
-    color: #88ccff;
-    text-shadow: 0 0 10px rgba(136, 204, 255, 0.7);
-    margin-bottom: 0.5rem;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--stormlight-white);
+    text-shadow: 0 0 15px var(--honor-blue), 1px 1px 2px black;
+    margin-bottom: 0rem;
+    letter-spacing: 2px;
 }
 
 .subtitle {
-    color: #aaa;
+    color: #8899aa;
     font-size: 0.9rem;
     font-weight: 300;
+    margin-top: 0.2rem;
+    text-transform: uppercase;
+}
+
+/* 通用按鈕：金屬質感 */
+button {
+    font-family: 'Cinzel', serif;
+    background-color: #1a2a3a;
+    color: #ccddff;
+    border: 2px solid #3a4a5a;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 按鈕懸停金屬閃光動畫 */
+button::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -60%; width: 20%; height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(30deg);
+    transition: 0.5s;
+}
+
+button:hover::after {
+    left: 120%;
+}
+
+button:active {
+    transform: scale(0.95);
+    background-color: #0d1a2a;
 }
 
 /* 箴言區域 */
 .ideals-container {
-    position: relative;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 1.5rem;
-    margin: 20px 0;
-    border-left: 3px solid #00bfff;
-    border-right: 3px solid #00bfff;
+    margin: 25px 0;
+    padding: 1.2rem;
+    background: rgba(0, 0, 0, 0.4);
     font-style: italic;
     color: #ccddff;
-    box-shadow: inset 0 0 15px rgba(0,191,255,0.1);
+    position: relative;
 }
 
-.glow-effect {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
-    animation: pulseGlow 4s infinite alternate;
+/* 模擬古老符文邊框 */
+.glyph-border {
+    border: 1px solid transparent;
+    border-image: linear-gradient(to right, transparent, var(--honor-blue), transparent) 1;
 }
 
-@keyframes pulseGlow {
-    from { opacity: 0.5; }
-    to { opacity: 1; }
+/* 目標設定 (織光者風格) */
+.goal-setting {
+    margin: 15px 0;
 }
 
-/* 計時器：寶石 (Sphere) 的外觀 */
-.timer-section {
-    margin: 40px 0;
+.control-group {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: #aaaaaa;
+}
+
+#goalInput {
+    background: transparent;
+    border: 1px solid #332222;
+    color: var(--lightweaver-garnet);
+    padding: 5px;
+    font-size: 1rem;
+    width: 70px;
+    text-align: center;
+}
+
+.garnet-glow label {
+    text-shadow: 0 0 5px var(--lightweaver-garnet);
+}
+
+.minor-btn {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+    background-color: #331111;
+    border-color: #552222;
+    color: #ffaaaa;
+}
+
+.minor-btn:hover {
+    background-color: var(--lightweaver-garnet);
+    color: black;
+    box-shadow: 0 0 10px var(--lightweaver-garnet);
+}
+
+/* 計時器：解決寶石切除問題 */
+.timer-section {
+    margin: 30px 0;
+}
+
+.sphere-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px; /* 增加 padding，確保發光不被切除 */
 }
 
 .sphere-container {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
     position: relative;
-    width: 200px;
-    height: 200px;
+    background: rgba(0,0,0,0.5);
+    box-shadow: 
+        0 0 30px rgba(0, 191, 255, 0.1),
+        inset 0 0 15px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 榮譽藍發光效果 */
+.sapphire-glow::before {
+    content: '';
+    position: absolute;
+    top: -10px; left: -10px; right: -10px; bottom: -10px;
+    background: rgba(0, 191, 255, 0.3);
+    border-radius: 50%;
+    filter: blur(20px);
+    z-index: 1;
+    animation: stormlightPulse 3s infinite alternate;
+}
+
+@keyframes stormlightPulse {
+    0% { transform: scale(1); opacity: 0.4; }
+    100% { transform: scale(1.1); opacity: 0.7; }
 }
 
 .sphere-core {
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 30% 30%, #4499ff, #001122 70%);
+    width: 90%;
+    height: 90%;
+    background: radial-gradient(circle at 30% 30%, #3399ff, #001122 80%);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 4px solid rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.1);
     position: relative;
     z-index: 2;
 }
 
+/* 計時核心旋轉動畫 */
+.timer-running .sphere-core {
+    animation: gemRotate 10s infinite linear;
+}
+
+@keyframes gemRotate {
+    to { transform: rotate(360deg); }
+}
+
 #timerDisplay {
-    font-size: 4rem;
+    font-size: 4.5rem;
     font-weight: bold;
     color: white;
-    text-shadow: 0 0 15px #00bfff, 0 0 30px #00bfff;
+    text-shadow: 0 0 20px #aaddff, 0 0 40px var(--honor-blue);
 }
 
-.stormlight-glow {
-    position: absolute;
-    top: -10px; left: -10px; right: -10px; bottom: -10px;
-    background: rgba(0, 191, 255, 0.2);
-    border-radius: 50%;
-    filter: blur(20px);
-    z-index: 1;
-    animation: stormlightPulse 2s infinite;
-}
-
-@keyframes stormlightPulse {
-    0% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(1.05); opacity: 0.8; }
-    100% { transform: scale(1); opacity: 0.5; }
-}
-
-/* 控制區域 */
+/* 控制區域：按鈕縮小與間距增加 */
 .controls-rosette {
-    margin-top: 20px;
+    margin-top: 15px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 15px; /* 增加間距 */
+    flex-wrap: wrap; /* 手機上自動換行 */
 }
 
 #minutesInput {
     background: transparent;
-    border: 1px solid #334455;
-    color: #88ccff;
+    border: 1px solid #1a222a;
+    border-bottom: 2px solid var(--honor-blue);
+    color: var(--honor-blue);
     padding: 8px;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     width: 60px;
-    border-radius: 5px;
     text-align: center;
-}
-
-#minutesInput:focus {
-    outline: none;
-    border-color: #00bfff;
-    box-shadow: 0 0 5px #00bfff;
-}
-
-button {
     font-family: 'Cinzel', serif;
-    background-color: #1a334d;
-    color: #ccddff;
-    border: 2px solid #334455;
-    padding: 10px 25px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
 }
 
-button:hover {
-    background-color: #00bfff;
-    color: #030a12;
-    border-color: white;
-    box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+#startBtn {
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 20px; /* 這裡可以圓一點，像個紋章 */
+    background-color: #002233;
+    border-color: #004466;
+    font-weight: 700;
 }
 
-#statusText {
-    color: #667788;
-    font-size: 0.8rem;
-    margin-top: 30px;
-}
-
-.progress-section {
-    margin-top: 30px;
-    border-top: 1px solid #334455;
-    padding-top: 20px;
-}
-
-.stormlight-bar-container {
-    width: 100%;
-    height: 25px;
-    background: #05111d;
-    border: 1px solid #00bfff;
-    border-radius: 12px;
-    position: relative;
-    overflow: hidden;
-    margin: 15px 0;
-    box-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
-}
-
-.stormlight-bar-fill {
-    height: 100%;
-    width: 0%; /* 初始值 */
-    background: linear-gradient(90deg, #0055ff, #00bfff);
-    box-shadow: 0 0 15px #00bfff;
-    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-#progressText {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: white;
-    text-shadow: 1px 1px 2px black;
-}
-
-.water-controls {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.water-controls button {
-    font-size: 0.8rem;
-    padding: 5px 12px;
-}
-
-.reset-btn {
-    background-color: #331111;
-    border-color: #552222;
-    color: #ff8888;
-}
-
-.reset-btn:hover {
-    background-color: #772222;
+#startBtn:hover {
+    background-color: var(--honor-blue);
+    color: #050a12;
+    box-shadow: 0 0 25px var(--honor-blue);
 }
