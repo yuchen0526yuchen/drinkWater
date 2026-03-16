@@ -4,47 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>柔光聖壇 - 颶光補充守衛</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="main-shrine">
+    <div class="storm-background"></div> <div class="main-shrine">
+        
         <header>
             <div class="radiant-icon"></div>
             <h1>柔光聖壇</h1>
-            <p class="subtitle">將「榮譽」注入你的身體，光輝之主</p>
+            <p class="subtitle">將榮譽注入你的身體</p>
         </header>
 
-        <section class="ideals-container">
-            <div class="glow-effect"></div>
-            <p id="dailyIdeal">“ 生命優於死亡。力量優於軟弱。旅程優於終點。 ”</p>
+        <section class="ideals-container glyph-border">
+            <p id="dailyIdeal">“ 生命優於死亡。旅程優於終點。 ”</p>
+        </section>
+
+        <section class="goal-setting">
+            <div class="control-group garnet-glow">
+                <label for="goalInput">每日榮譽目標 (ml):</label>
+                <input type="number" id="goalInput" value="2000" min="500" step="100">
+                <button id="setGoalBtn" class="minor-btn">綁定誓言</button>
+            </div>
         </section>
 
         <section class="timer-section">
-            <div class="sphere-container">
-                <div class="sphere-core">
-                    <div id="timerDisplay">60:00</div>
+            <div class="sphere-wrapper"> <div class="sphere-container sapphire-glow">
+                    <div class="sphere-core">
+                        <div id="timerDisplay">60:00</div>
+                    </div>
                 </div>
-                <div class="stormlight-glow"></div>
             </div>
 
-            <div class="controls-rosette">
+            <div class="controls-rosette saphire-control">
                 <input type="number" id="minutesInput" value="60" min="1">
                 <span>分節</span>
                 <button id="startBtn">接受誓言</button>
             </div>
         </section>
 
-        <section class="progress-section">
-            <h3>當前颶光儲備 (今日飲水)</h3>
+        <section class="progress-section shard-metal-border">
+            <header class="shard-header">
+                <h3>當前颶光儲備</h3>
+                <span id="progressText">0 / 2000 ml</span>
+            </header>
             <div class="stormlight-bar-container">
                 <div id="progressBar" class="stormlight-bar-fill"></div>
-                <span id="progressText">0 / 2000 ml</span>
             </div>
             <div class="water-controls">
-                <button onclick="addWater(250)">+ 250ml (小寶石)</button>
-                <button onclick="addWater(500)">+ 500ml (大寶石)</button>
-                <button onclick="resetWater()" class="reset-btn">清空儲備</button>
+                <button onclick="addWater(250)" class="gem-btn small-gem">+ 250ml</button>
+                <button onclick="addWater(500)" class="gem-btn large-gem">+ 500ml</button>
+                <button onclick="addWater(1000)" class="gem-btn grand-gem">+ 1000ml</button>
+                <button onclick="resetWater()" class="reset-btn metal-btn">清空儲備</button>
             </div>
         </section>
 
