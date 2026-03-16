@@ -97,3 +97,52 @@ function sendNotification() {
         alert("喝水時間到！你的光輝正在消逝！");
     }
 }
+
+// 新增變數
+let currentWater = parseInt(localStorage.getItem('waterCount')) || 0;
+const goalWater = 2000; // 目標值，你可以自行修改
+
+// 初始化顯示
+updateWaterUI();
+
+function addWater(amount) {
+    currentWater += amount;
+    saveAndRefresh();
+    
+    // 小驚喜：當達到目標時的文字
+    if (currentWater >= goalWater) {
+        statusText.innerText = "你的光輝已達巔峰！你已充滿颶光。";
+    }
+}
+
+function resetWater() {
+    if (confirm("確定要清空今日的颶光儲備嗎？")) {
+        currentWater = 0;
+        saveAndRefresh();
+        statusText.innerText = "儲備已清空，重新開始你的旅程。";
+    }
+}
+
+function saveAndRefresh() {
+    localStorage.setItem('waterCount', currentWater);
+    updateWaterUI();
+}
+
+function updateWaterUI() {
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    
+    const percentage = Math.min((currentWater / goalWater) * 100, 100);
+    progressBar.style.width = `${percentage}%`;
+    progressText.innerText = `${currentWater} / ${goalWater} ml`;
+}
+
+// 可以在 sendNotification 裡面也加入提醒
+function sendNotification() {
+    if (Notification.permission === "granted") {
+        new Notification("💧 你的「柔光」已耗盡！", {
+            body: `目前的儲備為 ${currentWater}ml。請補給以維持光輝。`,
+            icon: "https://cdn-icons-png.flaticon.com/512/3100/3100566.png"
+        });
+    }
+}
