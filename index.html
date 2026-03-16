@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>柔光聖壇 - 颶光補充守衛</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-shrine">
+        <header>
+            <div class="radiant-icon"></div>
+            <h1>柔光聖壇</h1>
+            <p class="subtitle">將「榮譽」注入你的身體，光輝之主</p>
+        </header>
+
+        <section class="ideals-container">
+            <div class="glow-effect"></div>
+            <p id="dailyIdeal">“ 生命優於死亡。力量優於軟弱。旅程優於終點。 ”</p>
+        </section>
+
+        <section class="timer-section">
+            <div class="sphere-container">
+                <div class="sphere-core">
+                    <div id="timerDisplay">60:00</div>
+                </div>
+                <div class="stormlight-glow"></div>
+            </div>
+
+            <div class="controls-rosette">
+                <input type="number" id="minutesInput" value="60" min="1">
+                <span>分節</span>
+                <button id="startBtn">接受誓言</button>
+            </div>
+        </section>
+
+        <p id="statusText">等待風父的敕令...</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
